@@ -691,7 +691,7 @@
     startScr.classList.add('fade-out');
     birthdayPage.classList.add('visible');
     confCanvas.classList.add('visible');
-    introVideo.play().catch(() => {});
+    setTimeout(() => { introVideo.play().catch(() => {}); }, 3000);
     setTimeout(() => { startScr.style.display = 'none'; }, 800);
   }
 
