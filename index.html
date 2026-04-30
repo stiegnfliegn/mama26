@@ -703,11 +703,11 @@
 
   const introCard = document.querySelector('.intro-card');
 
-  // 👉 nach 3 Sekunden: einblenden + Video starten
+  // 👉 nach 2 Sekunden: einblenden + Video starten
   setTimeout(() => {
     introCard.classList.add('visible');
     introVideo.play().catch(() => {});
-  }, 3000);
+  }, 2000);
 
   // Startscreen ausblenden
   setTimeout(() => {
