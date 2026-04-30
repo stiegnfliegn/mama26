@@ -286,15 +286,24 @@
 
   /* ── Intro video card ── */
   .intro-card {
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 24px;
-    border: 2px solid rgba(255,255,255,0.95);
-    overflow: hidden;
-    margin-bottom: 28px;
-    box-shadow: 0 6px 32px rgba(180,100,220,0.13);
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 2px solid rgba(255,255,255,0.95);
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 6px 32px rgba(180,100,220,0.13);
+
+  /* NEU */
+  opacity: 0;
+  transition: opacity 0.8s ease;
   }
+  
+  .intro-card.visible {
+    opacity: 1;
+  }
+ 
   /* CHANGE 4: intro-label removed from HTML, keeping CSS harmless */
   .intro-label {
     display: flex;
@@ -688,12 +697,23 @@
   const startScr = document.getElementById('start-screen');
 
   function beginExperience() {
-    startScr.classList.add('fade-out');
-    birthdayPage.classList.add('visible');
-    confCanvas.classList.add('visible');
-    setTimeout(() => { introVideo.play().catch(() => {}); }, 3000);
-    setTimeout(() => { startScr.style.display = 'none'; }, 800);
-  }
+  startScr.classList.add('fade-out');
+  birthdayPage.classList.add('visible');
+  confCanvas.classList.add('visible');
+
+  const introCard = document.querySelector('.intro-card');
+
+  // 👉 nach 3 Sekunden: einblenden + Video starten
+  setTimeout(() => {
+    introCard.classList.add('visible');
+    introVideo.play().catch(() => {});
+  }, 3000);
+
+  // Startscreen ausblenden
+  setTimeout(() => {
+    startScr.style.display = 'none';
+  }, 800);
+}
 
   // ── Intro Video Ende ──────────────────────────────────────
   introVideo.addEventListener('ended', () => {
